@@ -1,0 +1,14 @@
+mappings:
+   /app/ms/{acctid}/accounts:
+      SupportedMethods: GET,POST 
+      ControllerClass: saralarchan.org.core.ActionController
+      ControllerMethodSignature: performCheck,jakarta.servlet.http.HttpServletRequest,java.util.Map
+      Consumes: application/json
+      Produces: application/json,text/html
+   /test/accountHierarchy:
+      SupportedMethods: POST 
+      ControllerClass: saralarchan.org.core.ActionController
+      ControllerMethodSignature: test,jakarta.servlet.http.HttpServletRequest,java.util.Map
+      Consumes: application/json
+      Produces: application/json,text/html
+      

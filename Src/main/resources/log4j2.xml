@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extra logging related to initialization of Log4j. 
+ Set to debug or trace if log4j initialization is failing. -->
+<Configuration status="warn">
+	<CustomLevels>
+    <CustomLevel name="INTERNAL" intLevel="250" />
+  </CustomLevels>
+    <Appenders>
+    	<!-- Console appender configuration -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+        </Console>
+        <File name="myfile" fileName="logs/app.log" filePattern="logs/app.%i.log.gz" >
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+             <Policies>
+                 <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+             <DefaultRolloverStrategy max="5" />
+        </File>
+        <File name="app" fileName="logs/internal.log" filePattern="logs/internal.%i.log.gz" >
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+             <Policies>
+                 <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+             <DefaultRolloverStrategy max="5" />
+        </File>
+    </Appenders>
+    <Loggers>
+    	<!-- Root logger referring to console appender -->
+        <Root level="info" additivity="true">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="myfile" />
+            <AppenderRef ref="app" level="INTERNAL" />
+        </Root>
+    </Loggers>
+</Configuration>

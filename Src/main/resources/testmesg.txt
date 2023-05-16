@@ -1,0 +1,1 @@
+https://octet1.octet2.octet3.octet4:8443/API/Test  "{\"CUSTOMER_NO\":\"2212343218765\", \"CUSTOMER_YPE\": \"AADHAR\"}"
