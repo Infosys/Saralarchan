@@ -1,0 +1,120 @@
+{
+	"RESPONSE": {
+		"specialCustomer": "From REDIS Response",
+		"ShippingAddress": [],
+		"salutation": null,
+		"RegisterAddress": [
+			{
+				"unitNumber": "#15-47",
+				"streetAddress": "712 STREET SAMPLE ST 72",
+				"premisesExtId": "08a3c492-a207-4789-82f0-9a9d76c1ea16",
+				"postalCode": "510712",
+				"country": "COUNTRY1",
+				"buildingName": null,
+				"billingExtId": null,
+				"BAN": null,
+				"addressType": "Registered",
+				"addresseeName": "REGISTER ADDRESS",
+				"address2": null,
+				"address1": null
+			}
+		],
+		"primaryPreferredName": null,
+		"primaryEmailAddress": "d***********s@yahuo.com",
+		"primaryContactNumber": "87009079",
+		"passType": null,
+		"passExpiryDate": null,
+		"nationality": null,
+		"name": "KADY SOME PERSON",
+		"kycType": null,
+		"kycCompleted": false,
+		"isCobrand": false,
+		"idType": "NRIC",
+		"idNumber": "S72*****F",
+		"gender": "Female",
+		"finPassSource": null,
+		"detailsRetrievedFrmMyInfo": false,
+		"dateofBirth": "1972-11-10",
+		"customerType": "NewCustomer",
+		"customerSubType": "IDR",
+		"consumerAccountID": "CA-ba7dc92d-f6d7-433c-8c50-61250999924",
+		"B2C_GUID": "3c4265be-612f-49fe-xxxx-d3fb6722a342",
+		"alternatePhoneNumber": null,
+		"BANs": [
+			{
+				"Lines": [
+					{
+						"suspensionList": null,
+						"serviceUniqueId": "IF-102863c6-41be-e942-b4ca-3fd449994b5",
+						"serviceAccountID": "SA-46ee4c1a-4d7a-410f-8727-5ba399958ccb",
+						"provisioningStatus": "Active",
+						"PreferredName": "AMIR JADA",
+						"parentSAId": null,
+						"parentMSISDN": null,
+						"Name": "KADY SOME PERSON",
+						"MSISDN": "87099979",
+						"migrationDate": null,
+						"lineType": "SIM",
+						"isWorkSIM": false,
+						"isSunrisers": false,
+						"isSilverBenefit": false,
+						"isPrimary": true,
+						"isCORI": false,
+						"hasSIMActivated": "Active",
+						"groupSubscriptionId": null,
+						"contractStartDate": null,
+						"contractEndDate": null,
+						"billPlanType": "Bespoke",
+						"assetStatus": "Active",
+						"assetName": "SIM"
+					},
+					{
+						"suspensionList": null,
+						"serviceUniqueId": "IF-7f27fcbf-d154-28f1-2348-ed1336cb3f14",
+						"serviceAccountID": "SA-3eb62797-f73a-4159-83ce-8329ac0b577a",
+						"provisioningStatus": "Active",
+						"PreferredName": "ZIKRY",
+						"parentSAId": null,
+						"parentMSISDN": null,
+						"Name": "KADY SOME PERSON",
+						"MSISDN": "9451455",
+						"migrationDate": null,
+						"lineType": "SIM",
+						"isWorkSIM": false,
+						"isSunrisers": false,
+						"isSilverBenefit": false,
+						"isPrimary": false,
+						"isCORI": false,
+						"hasSIMActivated": "Active",
+						"groupSubscriptionId": null,
+						"contractStartDate": null,
+						"contractEndDate": null,
+						"billPlanType": "Bespoke",
+						"assetStatus": "Active",
+						"assetName": "SIM"
+					}
+				],
+				"BillingAddress": [
+					{
+						"unitNumber": "#15-47",
+						"streetAddress": "712 STREET SAMPLE ST 72",
+						"premisesExtId": "78039c89-1871-4ed7-xxxx-eb39f621e13c",
+						"postalCode": "760712",
+						"country": "COUNTRY1",
+						"buildingName": null,
+						"billingExtId": null,
+						"BAN": null,
+						"addressType": "Billing",
+						"addresseeName": "BILLING ADDRESS",
+						"address2": null,
+						"address1": null
+					}
+				],
+				"billingAccountSFId": "00184000003NK3vAAG",
+				"billingAccountID": "BA-9abfddd6-c6f5-4c75-bc75-a53642246607",
+				"billingAddressID": "780xxx89-1871-4ed7-b8e9-eb3999993c",
+				"BAN": "79345626"
+			}
+		]
+	}
+}
