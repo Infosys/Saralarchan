@@ -1,0 +1,61 @@
+Requirements for working withteh code
+---------------------------------------
+
+IDE : It  is preferable to use Spring Tool Suite 4. 
+Version: 4.17.2.RELEASE
+Copyright (c) 2007 - 2023 VMware, Inc.
+All rights reserved. Visit https://spring.io/tools
+Download from : https://spring.io/tools.
+=====================================================================================================================================
+
+The code is built using graalvm. https://www.graalvm.org/
+Download graalvm Java 17 for Windows from https://www.graalvm.org/downloads/#
+Install the JDK in a folder of your choice after extracting the downloaded binary into the selected folder (eg: e:\graalvm17).
+Use an unzip software to extract the binary. The extracted folder is ready to use. ( eg: the binaries will be extracted into  E:\graalvm17\graalvm-jdk-17.0.7+8.1).
+
+set the PATH environment variable. In windows open the Environment variables setup panel and edit the PATH variabe to incude the path upto the bin folder of teh 
+installed graalvm. ( example PATH=E:\graalvm17\graalvm-jdk-17.0.7+8.1;%PATH% ).
+
+set the JAVA_HOME environment variable to incude the path upto the ase folder of the graalvm installation. ( eg: JAVA_HOME=E:\graalvm17\graalvm-jdk-17.0.7+8.1)
+
+( Validating java is installed properly : Open a command prompt and execute 
+E:>java -version
+output wil be simiar to 
+java version "17.0.7" 2023-04-18 LTS
+Java(TM) SE Runtime Environment Oracle GraalVM 17.0.7+8.1 (build 17.0.7+8-LTS-jvmci-23.0-b12)
+Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 17.0.7+8.1 (build 17.0.7+8-LTS-jvmci-23.0-b12, mixed mode, sharing)
+
+In case you get a java version which differs from graalvm, it is possible you already have another version of java installed. To give a precedence to 
+graalvm , move the path of the graaalvm bin folder up in the order in the PATH variable setting. You can do so by opening the environment variable tab
+and changing the order of the pathlets against the PATH variable in the panel for variables setting. 
+
+At this moment the Saralarchan code supports calls to javascript functions from java code. To enable this the js module in graalvm is needed. Thsi can be
+added to the graalvm installation by using the following command from the bin folder of graalvm:
+E:\graalvm17\graalvm-jdk-17.0.7+8.1>gu install js
+Downloading: Artifacts catalog from gds.oracle.com
+Skipping ULN EE channels, no username provided.
+Downloading: Component catalog from www.graalvm.org
+Processing Component: Graal.js
+
+=========================================================================================================================================
+
+pulling the code repository
+-----------------------------
+install the git software on your workstation
+
+create a directory named saral and change your location to it.
+git init .
+Thsi will initialise the directory as the base folder.
+clone the code locally by using the below link and executig the git clone command.
+git clone https://github.com/Infosys/Saralarchan.git
+This will copy the remote repository into the local workstation
+
+
+
+
+
+
+
+
+
+
