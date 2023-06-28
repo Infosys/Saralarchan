@@ -45,7 +45,7 @@ install the git software on your workstation
 
 create a directory named saral and change your location to it.
 git init .
-Thsi will initialise the directory as the base folder.
+This will initialise the directory as the base folder.
 clone the code locally by using the below link and executig the git clone command.
 git clone https://github.com/Infosys/Saralarchan.git
 This will copy the remote repository into the local workstation
