@@ -231,7 +231,8 @@ public class ActionController {
 	public ResponseEntity performCheck(HttpServletRequest request, @RequestParam Map<String, String> allParams) {
 
 		// String reqName = request.getRequestURI();
-		String reqName = request.getRequestURL().toString();
+		//String reqName = request.getRequestURL().toString();
+		String reqName = request.getRequestURI().toString();
 		LogManager.logInfo(reqName);
 		Enumeration e1 = request.getHeaderNames();
 
@@ -256,7 +257,7 @@ public class ActionController {
 		LogManager.logInfo("Looking for classAndMethod: "+classAndMethod +"in paramTemplates" );
 		LogManager.logInfo("HandlerConfig.paramTemplates is:"+EndpointService.paramTemplates.toString());
 		HashMap paramnameholder = (HashMap) EndpointService.paramTemplates.get(classAndMethod);
-		LogManager.logInfo("patramHolder obtained from gloabl param map:"+paramnameholder.toString());
+		LogManager.logInfo("paramHolder obtained from gloabl param map:"+paramnameholder.toString());
 		int position = 1;
 		HashMap extraparams = new HashMap();
 		while (st.hasMoreTokens()) {
