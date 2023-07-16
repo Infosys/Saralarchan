@@ -16,11 +16,11 @@ Use an unzip software to extract the binary. The extracted folder is ready to us
 set the PATH environment variable. In windows open the Environment variables setup panel and edit the PATH variabe to include the path upto the bin folder of the 
 installed graalvm. ( example PATH=E:\graalvm17\graalvm-jdk-17.0.7+8.1;%PATH% ).
 
-set the JAVA_HOME environment variable to incude the path upto the base folder of the graalvm installation. ( eg: JAVA_HOME=E:\graalvm17\graalvm-jdk-17.0.7+8.1)
+set the JAVA_HOME environment variable to include the path up to the base folder of the graalvm installation. ( eg: JAVA_HOME=E:\graalvm17\graalvm-jdk-17.0.7+8.1)
 
 ( Validating java is installed properly : Open a command prompt and execute 
 E:>java -version
-output wil be simiar to 
+output will be similar to 
 java version "17.0.7" 2023-04-18 LTS
 Java(TM) SE Runtime Environment Oracle GraalVM 17.0.7+8.1 (build 17.0.7+8-LTS-jvmci-23.0-b12)
 Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 17.0.7+8.1 (build 17.0.7+8-LTS-jvmci-23.0-b12, mixed mode, sharing)
@@ -44,14 +44,71 @@ pulling the Saralarchan code repository
 ---------------------------------------
 install the git software on your workstation
 
-create a directory named saral and change your location to it. Then initialise a git project as:
+create a directory named saral and change your location to it. Then initialize a git project as:
 git init .
-This will initialise the directory as the base folder.
+This will initialize the directory as the base folder.
 clone the code locally by using the below link and executing the git clone command.
 git clone https://github.com/Infosys/Saralarchan.git
 This will copy the remote repository into the local workstation.
 
 Now open the Spring Tool Suite and create a maven project with the base directory Saralarchan added to the project.
+
+Alternatively the code can be pulled using the spring tool suite IDE by using the import wizard. From the File->import->Git (Projects from Git) you will proceed
+to the next screen. Select Clone URI and proceed to the next screen using Next button.
+Specify the details like the github URL ( https://github.com/Infosys/Saralarchan , Host as github.com and repository path /Infosys/Saralarchan). copy paste the url
+by navigating to Saralarchan repository, other details will be auto filled.
+
+The user name and Authentication can be skipped ,if you want to download code without requiring any updates.
+Note: You always have the option to fork a branch from the main branch in github repository. That will provide you
+with full access to the code on your branch. If you intend to add adapters or create new processors we strongly suggest
+you to fork a branch.
+
+Once you select the branch from the repository you get the screen to specify the local directory to import the code.
+Choose the appropriate workspace in your local computer and press Next. The working directory will be displayed.
+On selecting to move ahead, the project will be created in your local computer.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Build and execute the main class
+------------------------------------
+If you have imported the project from Git Hub, the project needs to be converted into a maven project
+in your workspace. Right click on the project root in your workspace and navigate to configure-> convert to a maven project.
+Since the project repository already has a pom.xml the project will associate all facets needed for the maven build.
+Once the project is ready , associate the graalvm to its classpath so that the  dependent classes all compile successfully.
+(right click on project root --> properties --> Java build path --> then click on classpath and then click on Add Library.)
+Choose the folder where graalvm was installed. associate the base path of the installation as a standard VM.
+Now all classes will compile . Check that the project tree does not indicate any errors or issues with compilation.
+
+In the project tree, navigate to the core folder and right click on SaralarchanApplication.java.
+Choose Run As --> Run Configurations.  In the execution window popup specify teh following details
+appropriately.
+
+Main tab --> Project : Saralarchan
+			Main Class --> saralarchan.org.core.SaralarchanApplication ( You can choose this from the list of main classes scanned by the project builder)
+
+Arguments tab --> choose the working directory as the resources folder . Choose the other radio button and click on workspace.
+                 This will show the project tree. The resources folder can be found inside the main folder of the project.
+
+JRE tab --> choose alternate JRE and select the graalvm as the runtime from teh drop down.
+
+Now we are ready to execute. 
+
+Right Click --> SaralarchanApplication.java --> Java Application. 
+The spring boot application will come up on the port 8081. The microservice is now ready to serve.
+If you want to change the port, browse to the resource folder in the workspace and find the application.properties file.
+Change server.port=8081  to any other port of your choice making sure it does not conflict with any other listeners.
+Note : Please do not change the matching-strategy configuration. This is a required parameter for URL mappings. The usage of this parameter will be discussed in the 
+user guide for the framework.
+
+--------------------------End of Getting Started Guide -------------------------
+
+ 
+
+
+
+
+
+
 
 
 
