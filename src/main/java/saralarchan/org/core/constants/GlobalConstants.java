@@ -18,5 +18,6 @@ public class GlobalConstants {
 
 	public static final String CIPHER_KEY = null;
 	public static final String LogLineSeperator = "|";
+	public static final String FILEUPLOADKEY = "FILEUPLOADPATH";
 
 }

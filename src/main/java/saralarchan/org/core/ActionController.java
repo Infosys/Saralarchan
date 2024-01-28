@@ -27,19 +27,24 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import saralarchan.org.core.constants.GlobalConstants;
 import saralarchan.org.core.service.EndpointService;
 import saralarchan.org.logger.LogManager;
 
@@ -439,5 +444,25 @@ public class ActionController {
 		return ResponseEntity.status(statuscode).headers(responseHeaders).body(resp.get("RESPONSE"));
 
 	}
+	
+	
+	@PostMapping("/upload")
+	  public ResponseEntity  uploadFile(@RequestParam("file") MultipartFile file) {
+	    String message = "";
+	    try {
+	    	byte[] dataForWriting = file.getBytes();
+	    	//message = "Received the file successfully: " + file.getOriginalFilename();
+	        String fileUploadPath = CommonUtils.getGlobalProp(GlobalConstants.FILEUPLOADKEY);
+	    	File outputFile = new File(fileUploadPath+"/"+file.getOriginalFilename());
+			FileUtils.writeByteArrayToFile(outputFile , dataForWriting);	     
+	        return ResponseEntity.status(HttpStatus.OK).body("");
+	    } catch (Exception e) {
+	      message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
+	      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("");
+	    }
+	  }
+
+	
+	
 
 }
