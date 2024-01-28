@@ -1,0 +1,73 @@
+Saralarchan currently supports JSON requests and emits JSON responses as a result of transformations and enrichment performed on request payload.
+The request payload is received either as a parameterised url or in the request body.
+The urls can be mapped against various end points which can be defined as pojo classes. 
+Use the mappings.yml in the resources folder to allow for URLs to get processed thru generic request processing methods.
+
+mappings:
+   /app/ms/{MSISDN}/accounts:
+      SupportedMethods: GET,POST 
+      ControllerClass: saralarchan.org.core.ActionController
+      ControllerMethodSignature: performCheck,jakarta.servlet.http.HttpServletRequest,java.util.Map
+      Consumes: application/json
+      Produces: application/json,text/html
+   /test/accountHierarchy:
+      SupportedMethods: POST 
+      ControllerClass: saralarchan.org.core.ActionController
+      ControllerMethodSignature: test,jakarta.servlet.http.HttpServletRequest,java.util.Map
+      Consumes: application/json
+      Produces: application/json,text/html
+
+In the above example 2 urls are shown to be mapped against 2 different methods on the ActionController.
+a) the url /app/ms/{MSISDN}/accounts will match any incoming request of this pattern. The {MSISDN} is used as a placeholder 
+   for a parameter and is picked from the url and mapped to a param value in teh payload.
+   The SupportedMethods will allow the specified verbs to be intercepted by the specified method in the controller class.
+   ControllerMethodSignature specifies the method on the controller class (in this case perfromCheck method) and teh arguments
+   which can be any data type supported by servlets.
+   The consumes and Produces maps what mime types are acceptable as a request and those that are emitted as response.
+
+b) the url /test/accoutHierarchy will be accepted as a POST method on the controller class's test method taking the servletrequest and a java map
+   as arguments. It accepts json mime tye and produces a text/html output or a json output.
+
+New urls can be mapped to the same controller method and addiotional mappings can be injected into the mappings.yml.
+
+Like wise additional controller classes can be created for handling other types of payloads and acordingly the urls mapped against them.
+The controller class can be any plain java object and the method can be mapped as above to hande the url patterns.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Payload procesing
+
+The URI is tokenized and broken into parts and the last part is used to identify the request. This identifier can either be used to select a predesignated processing class 
+by mapping it against the required delegate class or by assuming an implicit processor using the base rocessor. If no mapping is found for a delegate class the processor defaults
+to the baseprocessor.
+
+If an explict mapping is required use the method loadPatterns in the PatternFinder.java to specify the mapping by making an entry into the patterns arraylist.
+patterns.add(Pattern.compile("\\{\"CheckCustomerBlacklist\":.*\\}"));
+Add teh above line in loadPatterns method and specify the token name that shoudl be matched from teh payload. The get method in the PatternMatcher iterates across teh arraylist
+and tries to identfy a match against the list of patterns for the received payload. On findig a match, a delegate class name is returned to the controller, which then
+uses an service class to instantiate the delegate and invoke its execute method. The delegate always extends a base proecessor so it inherits a preprocessor method, an execute method and 
+a post processor method. The service invokes the execute method of the delegate which in turn passes the request object to a pre processor for any secialised handling and then performs the orchestration
+as specified in the delegate property sheet. Teh orchestration performs several steps of trasformations till a response object is formed. Once a response object is formed it is passed to a post processor
+which can apply any custom logic to further modify teh response object if required. The resposne is then serialized nd sent back to teh client.
+
+In case the Pattern Finder does not specify any delegate mapping against the payload received, the base processor is called. The execute method of the base 
+processor invokes the transform method, which essentially uses a cached transformer to performs the step wise transformations on the payload.
+
+The below section provides the details of the various step transformations that can be performed using a declarative constructs in a property sheet.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONTROLLING INSTRUCTIONS : whenever, a line starts with @ it indicates a controlling logic .Any orcehstration step can take the form of one of the below constructs:
+
+@ACTION : 
+@CASE
+@ASYNC
+@BLOCK
+@RETURN
+
+@ACTION:DO->$VAR.SOMECTXVAR|<a trasformation helper>:<transformer arguments>
+The @ACTION:DO is simply a keyword to specify that a processor is being invoked. Teh arrow symbol (->) is syntactic means to seperate out the keywrd from the processors.
+The transformaion helper and arguments can be one of the following forms:
+SETVAR
+
+
+
