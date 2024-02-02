@@ -67,7 +67,23 @@ CONTROLLING INSTRUCTIONS : whenever, a line starts with @ it indicates a control
 @ACTION:DO->$VAR.SOMECTXVAR|<a trasformation helper>:<transformer arguments>
 The @ACTION:DO is simply a keyword to specify that a processor is being invoked. Teh arrow symbol (->) is syntactic means to seperate out the keywrd from the processors.
 The transformaion helper and arguments can be one of the following forms:
-SETVAR
+------------------------------------------------------------------------------------------------------------------------
+SETVAR --> ( This directive is the transformation specifier in this case --> implies that we want to set a context or a system variable or a json path in a response object)
+
+to set a context variable use $VAR.<variable name> . The variable name can be any alphanumeric identifier.
+To set a system variable use $SYSTEM.<variable name>. Here $SYSTEM will allow for defining a system setting  by the
+variable name.
+Similarly $.<json path> will set the node identified by the json path sequence.
+
+After specifying the target variable specify the delimeter '|' as a seperator for sspecifying teh keyword SETVAR. Follow up the keyword with a ':' and then specify the source  from which the target variable shouuld be set. The source can be another context variable or a json path from a  json document.
+
+Example:
+ACTION:DO->$VAR.ACCOUNT_VALID|SETVAR:True
+This will create a variable ACCOUNT_VALID in the context map and set its value to true.
+ACTION:DO->$SYSTEM.RESTRICYED_OPS|SETVAR:Y
+This will set the RESTRICTED FLAG to Y in system properties
+
+---------------------------------------------------------------------------------------------------------------------
 
 
 
